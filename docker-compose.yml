@@ -1,0 +1,18 @@
+services:
+  todo-backend:
+    build: ./todo-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb+srv://adityabv:g11dp1ths@fullstackprojects.ymwm1ys.mongodb.net/?appName=fullstackProjects
+      - APP_NAME=TODO DOCKER
+      - APP_PORT=5000
+      - APP_BASE_URL=http://localhost:5000
+      - APP_API_PREFIX=/api/v1
+
+  todo-fronted:
+    build: ./todo-fronted
+    ports:
+      - "3000:3000"
+    depends_on:
+      - todo-backend
