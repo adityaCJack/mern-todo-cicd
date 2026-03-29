@@ -17,7 +17,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
 
           script: |
-            cd ~/mern-todo-ci-cd/todo-backend
+            cd ~/mern-todo-cicd/todo-backend
             git pull origin dev
             npm install
             pm2 restart todo-backend || pm2 start server.js --name todo-backend
