@@ -20,7 +20,7 @@ jobs:
       - name: Build
         run: |
           cd todo-frontend
-          npm run build
+          REACT_APP_API_URL=http://18.60.107.128:5000 npm run build
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@v0.5.1
