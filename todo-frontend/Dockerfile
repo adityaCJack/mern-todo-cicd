@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-# Inject env at build time
+# Inject env at build time for prod
 ARG REACT_APP_API_BASE_URL
 ARG REACT_APP_API_BASE_URL2
 
