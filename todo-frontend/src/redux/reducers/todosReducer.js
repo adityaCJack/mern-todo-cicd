@@ -1,9 +1,21 @@
-import { DELETE_TODOS_FAILURE, DELETE_TODOS_REQUEST, DELETE_TODOS_SUCCESS, GET_TODOS_FAILURE, GET_TODOS_REQUEST, GET_TODOS_SUCCESS, POST_TODOS_FAILURE, POST_TODOS_REQUEST, POST_TODOS_SUCCESS } from "../constants/todosConstant";
+import {
+  DELETE_TODOS_FAILURE,
+  DELETE_TODOS_REQUEST,
+  DELETE_TODOS_SUCCESS,
+  GET_TODOS_FAILURE,
+  GET_TODOS_REQUEST,
+  GET_TODOS_SUCCESS,
+  GET_TODOS_SUCCESS2,
+  POST_TODOS_FAILURE,
+  POST_TODOS_REQUEST,
+  POST_TODOS_SUCCESS,
+} from "../constants/todosConstant";
 
 const initialState = {
   // initialState for get all todos
   isLoading: false,
   todos: [],
+  todos2: [],
   error: null,
 
   // initialState for create a todo
@@ -27,8 +39,16 @@ const todosReducer = (state = initialState, action) => {
       };
     case GET_TODOS_SUCCESS:
       return {
+        ...state,
         isLoading: false,
         todos: action.payload,
+        error: null,
+      };
+    case GET_TODOS_SUCCESS2:
+      return {
+        ...state,
+        isLoading: false,
+        todos2: action.payload,
         error: null,
       };
     case GET_TODOS_FAILURE:
