@@ -2,7 +2,7 @@ name: CI-CD to EC2 via ECR
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   deploy:
