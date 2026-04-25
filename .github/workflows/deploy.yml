@@ -24,7 +24,7 @@ jobs:
           aws ecr get-login-password --region ap-south-2 \
           | docker login --username AWS --password-stdin 754248136600.dkr.ecr.ap-south-2.amazonaws.com
 
-      - name: Build, Tag, Push Images
+      - name: Build, Tag, Push Images backend
         run: |
           # Backend 1
           docker build -t todo-backend ./todo-backend
@@ -36,8 +36,12 @@ jobs:
           docker tag todo-backend-2:latest 754248136600.dkr.ecr.ap-south-2.amazonaws.com/todo-backend-2:latest
           docker push 754248136600.dkr.ecr.ap-south-2.amazonaws.com/todo-backend-2:latest
 
-          # Frontend
-          docker build -t todo-frontend ./todo-frontend
+      - name: Build & Push Frontend
+        run: |
+          docker build \
+            --build-arg REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }} \
+            --build-arg REACT_APP_API_BASE_URL2=${{ secrets.REACT_APP_API_BASE_URL2 }} \
+            -t todo-frontend ./todo-frontend
           docker tag todo-frontend:latest 754248136600.dkr.ecr.ap-south-2.amazonaws.com/todo-frontend:latest
           docker push 754248136600.dkr.ecr.ap-south-2.amazonaws.com/todo-frontend:latest
 
